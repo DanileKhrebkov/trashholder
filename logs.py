@@ -20,8 +20,7 @@ def divide(a, b):
         logging.info(f'результат: {result}')
         return result
     
-# print("10/2", divide(10,2))
-# print("10/0", divide(10,0))
+
 def mult_string(s:str, num:int):
     try:
         if type(num) is int:
