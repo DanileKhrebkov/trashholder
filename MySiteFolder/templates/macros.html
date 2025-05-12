@@ -1,0 +1,8 @@
+{% macro card(name, age, image) %}
+<div>
+    <h3>{{name}}</h3>
+    <p>Краткое описание</p>
+    <p>Возраст {{age}}</p>
+    <img src="{{ image }}" alt="{{ name }}">
+</div>
+{% endmacro %}

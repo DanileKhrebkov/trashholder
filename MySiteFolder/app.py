@@ -1,43 +1,21 @@
-from flask import Flask, jsonify, render_template
-class MyApp(Flask):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.setup_routes()
+from flask import Flask, request, render_template, redirect, url_for
+app = Flask(__name__)
 
-    def setup_routes(self):
-        @self.route('/')
-        def home():
-            return render_template("index.html")
-        
-        @self.route('/api/data')
-        def get_data():
-            return jsonify({"status":"ok", "data":[1,2,3]})
-app = MyApp(__name__)
+@app.route("/", methods=['GET', 'POST'])
+def opros():
+    if request.method == "POST":
+        name = request.form["name"]
+        email = request.form["email"]
+        age = request.form["age"]
+        source = request.form.get('source')
+        comments = request.form.get('comments')        
+        print(f"{name} ({age}) прошел опрос")
+        print(source, comments)
+        return redirect(url_for('thank'))
+    return render_template("opros.html")
 
-@app.route("/login")
-def login():
-    return render_template("login.html")
+@app.route("/thank")
+def thank(): return "Спасибо за участие в опросе"
 
 if __name__ == "__main__":
-    app.run()
-
-
-
-
-
-# from flask import Flask, render_template, request
-# app = Flask(__name__, static_folder="static")
-# @app.route('/')
-# def home():
-#     return render_template("index.html")
-
-# @app.route('/login', methods=['GET', 'POST'])
-# def login():
-#     if request.method =="POST":
-#         username = request.form['username']
-#         password = request.form['password']
-#         return f"Вы вошли в систему, {username}"
-#     else:
-#         return render_template("login.html")
-# if __name__ == "__main__":
-#     app.run(debug=True)
+    app.run(debug=True)

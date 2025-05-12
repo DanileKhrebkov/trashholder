@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Заголовок страницы{% endblock %}</title>
+</head>
+<body>
+    <h3>Шапка сайта</h3>
+    <p>Основной текст, который будет у всех страниц</p>
+
+    {% if admin %}
+        <p>oh, Hello admin</p>
+    {% else %}
+        <p>Hi User</p>
+    {% endif %}
+
+
+    {% block main %}
+    {% endblock %}
+    <p>Подвал сайта</p>
+
+</body>
+</html>

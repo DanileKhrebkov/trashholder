@@ -1,0 +1,16 @@
+{% extends 'index2.html' %}
+{% set page_title = "About" %}
+
+{% block title %} {{page_title}} {% endblock %}
+{% block main %} 
+<h1>Biography</h1>
+<p>Общая биография автора сайта</p>
+
+
+
+{% for lang in langs %}
+    <li>{{lang}}</li>
+{% endfor %}
+
+
+{% endblock %}
